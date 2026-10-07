@@ -1,0 +1,1225 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NJ Civil Group</title>
+<meta name="description" content="NJ Civil Group. Bulk excavation, detailed excavation, piering, trenching, drainage and site prep across Sydney. Fixed quotes off your plans. Ring 0423 332 202.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: the site tells the dig as a story. A cinematic drone hero, then one pinned scene where scrolling digs a block from grass to slab-ready, with every other section built as something you can touch: stacking cards, a depth carousel, a step-by-step quote wizard. */
+:root{
+  color-scheme:dark;
+  --pit:#0d0d0d;      /* logo ground */
+  --coal:#151514;
+  --char:#1f1f1d;
+  --ash:#2b2b28;
+  --steel:#a4a8ab;    /* logo grey */
+  --orange:#f58a1f;   /* logo orange */
+  --amber:#ffb463;
+  --ember:#c9620a;
+  --bone:#efede6;     /* cured concrete */
+  --bone-2:#e2dfd5;
+  --ink:#141413;
+  --ink-2:#55544e;
+  --clay:#b0562c;     /* Sydney clay */
+  --grass:#4f5e37;
+  --line:rgba(255,255,255,.1);
+  --line-k:rgba(20,20,19,.14);
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --wrap:1200px;
+  --gut:clamp(18px,4vw,44px);
+  --r:20px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+  --spring:cubic-bezier(.34,1.4,.5,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:clip}
+body{margin:0;background:var(--pit);color:var(--bone);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3{font-family:var(--display);font-stretch:118%;font-weight:850;line-height:1;letter-spacing:-.012em;text-transform:uppercase;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.sec{padding-block:clamp(72px,10vw,136px);position:relative}
+.on-bone{background:var(--bone);color:var(--ink)}
+.on-coal{background:var(--coal)}
+.kick{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--orange)}
+.kick::before{content:"";width:28px;height:2px;background:currentColor}
+.on-bone .kick{color:var(--clay)}
+.h2{font-size:clamp(34px,5.4vw,68px);margin-top:16px;max-width:17ch}
+.lede{font-size:clamp(17px,1.5vw,20px);max-width:58ch;margin-top:20px;color:var(--steel)}
+.on-bone .lede{color:var(--ink-2)}
+.head-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+
+/* word reveal for headings (JS wraps words; visible without JS) */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>i{display:inline-block;font-style:normal;transition:transform .9s var(--ease);transition-delay:calc(var(--i)*45ms)}
+.split.pre .w>i{transform:translateY(110%)}
+.fade{transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0ms)}
+.fade.pre{opacity:0;transform:translateY(28px)}
+.wipe{transition:clip-path 1.1s var(--ease);clip-path:inset(0 0 0 0 round var(--r))}
+.wipe.pre{clip-path:inset(100% 0 0 0 round var(--r))}
+
+/* buttons: machined face, sweep, ripple */
+.btn{position:relative;isolation:isolate;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border:0;border-radius:14px;cursor:pointer;text-decoration:none;font-family:var(--display);font-stretch:112%;font-weight:800;font-size:15px;letter-spacing:.03em;text-transform:uppercase;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.42) 47%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.42) 53%,transparent 65%);transform:translateX(-130%);opacity:0}
+.btn:hover::before,.btn:focus-visible::before{opacity:1;animation:sweep .85s ease}
+@keyframes sweep{from{transform:translateX(-130%)}to{transform:translateX(130%)}}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.25)}
+.btn:active{transform:translateY(1px) scale(.985)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-o{background:linear-gradient(180deg,var(--amber) 0%,var(--orange) 45%,var(--ember) 100%);color:#1a0d00;box-shadow:0 10px 30px -10px rgba(245,138,31,.7)}
+.btn-o:hover{box-shadow:0 16px 40px -10px rgba(245,138,31,.9);transform:translateY(-2px)}
+.btn-g{background:rgba(255,255,255,.08);color:var(--bone);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.btn-g:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.btn-k{background:linear-gradient(180deg,#2a2a27,#111110);color:var(--bone)}
+.btn-k:hover{transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(0,0,0,.7)}
+.btn-ripple{position:absolute;z-index:-1;pointer-events:none;width:20px;height:20px;border-radius:50%;transform:translate(-50%,-50%) scale(0);background:radial-gradient(circle,rgba(255,255,255,.5) 0%,rgba(255,255,255,0) 70%);animation:rip .6s ease forwards}
+@keyframes rip{to{transform:translate(-50%,-50%) scale(9);opacity:0}}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.ring-dot{width:9px;height:9px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+
+/* header */
+.top{position:fixed;left:0;right:0;top:0;z-index:80;padding-top:env(safe-area-inset-top,0px);transition:background .4s,backdrop-filter .4s,box-shadow .4s}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:84px;transition:height .4s var(--ease)}
+.top.scrolled{background:rgba(13,13,13,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.top.scrolled .wrap{height:66px}
+.logo img{height:56px;width:auto;transition:height .4s var(--ease)}
+.top.scrolled .logo img{height:46px}
+.nav{display:flex;gap:6px;padding:6px;border-radius:999px;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px var(--line)}
+.nav a{position:relative;text-decoration:none;font-weight:600;font-size:14.5px;padding:8px 16px;border-radius:999px;color:#d9d8d2;transition:color .25s,background .25s}
+.nav a:hover,.nav a.cur{background:var(--bone);color:var(--ink)}
+.top-cta{display:flex;align-items:center;gap:16px}
+.top-cta .btn{min-height:46px;padding:0 20px;font-size:13.5px;border-radius:12px}
+.top-num{display:flex;align-items:center;gap:10px;font-family:var(--display);font-stretch:112%;font-weight:800;font-size:17px;text-decoration:none;white-space:nowrap}
+.burger{display:none;width:46px;height:46px;border:0;border-radius:12px;background:rgba(255,255,255,.08);cursor:pointer;position:relative}
+.burger i{position:absolute;left:13px;right:13px;height:2px;background:var(--bone);transition:transform .35s var(--ease),top .35s var(--ease)}
+.burger i:first-child{top:18px}.burger i:last-child{top:26px}
+.burger[aria-expanded=true] i:first-child{top:22px;transform:rotate(45deg)}
+.burger[aria-expanded=true] i:last-child{top:22px;transform:rotate(-45deg)}
+.prog{position:absolute;left:0;bottom:0;height:2px;width:100%;background:linear-gradient(90deg,var(--ember),var(--amber));transform-origin:0 50%;transform:scaleX(0)}
+.menu{position:fixed;inset:0;z-index:70;background:rgba(13,13,13,.97);backdrop-filter:blur(16px);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:100px var(--gut) 40px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.menu.open{opacity:1;visibility:visible}
+.menu a{font-family:var(--display);font-stretch:120%;font-weight:900;text-transform:uppercase;font-size:clamp(30px,9vw,54px);line-height:1.15;text-decoration:none;transform:translateY(24px);opacity:0;transition:transform .5s var(--ease),opacity .5s,color .2s;transition-delay:calc(var(--i)*60ms)}
+.menu.open a{transform:none;opacity:1}
+.menu a:hover{color:var(--orange)}
+.menu .btn{margin-top:24px;font-size:16px;align-self:flex-start}
+@media(max-width:980px){.nav{display:none}.burger{display:block}}
+@media(max-width:620px){.top-num,.top-cta .btn{display:none}}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:min(100svh,920px);display:flex;align-items:flex-end}
+.hero-media{position:absolute;inset:-6% 0;z-index:-3;will-change:transform}
+.hero-media video{width:100%;height:100%;object-fit:cover;animation:heroIn 2.2s var(--ease) both}
+@keyframes heroIn{from{transform:scale(1.18);filter:brightness(.3)}to{transform:scale(1);filter:brightness(1)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(120% 90% at 0% 100%,rgba(13,13,13,.96) 0%,rgba(13,13,13,.7) 45%,rgba(13,13,13,.25) 100%),linear-gradient(0deg,var(--pit) 2%,transparent 40%),linear-gradient(180deg,rgba(13,13,13,.7),transparent 22%)}
+.hero-glow{position:absolute;z-index:-1;left:-10%;bottom:-30%;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(245,138,31,.28),transparent 62%);pointer-events:none;animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.55;transform:scale(1.08)}}
+.hero .wrap{width:100%;padding-block:150px clamp(34px,5vw,60px);display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,.6fr);gap:clamp(24px,5vw,72px);align-items:end}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 12px;border-radius:999px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-weight:600;font-size:14.5px;animation:rise .9s var(--ease) .2s both}
+.badge b{color:var(--amber)}
+.hero h1{font-size:clamp(33px,8.3vw,82px);font-stretch:116%;font-weight:900;line-height:.9;margin-top:22px}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:block;animation:lineUp 1.1s var(--ease) both}
+.hero h1 .ln:nth-child(1)>span{animation-delay:.35s}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.5s}
+.hero h1 .ln:nth-child(3)>span{animation-delay:.65s;background:linear-gradient(100deg,var(--amber),var(--orange) 45%,var(--ember));-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes lineUp{from{transform:translateY(108%) rotate(3deg)}to{transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.hero-sub{max-width:54ch;font-size:clamp(17px,1.55vw,21px);color:#d8d7d1;margin-top:26px;animation:rise .9s var(--ease) .9s both}
+.hero .btn-row{margin-top:30px;animation:rise .9s var(--ease) 1.05s both}
+.hero-note{margin-top:16px;font-size:14.5px;color:var(--steel);animation:rise .9s var(--ease) 1.2s both}
+.hero-note b{color:var(--bone)}
+/* floating phone reel */
+.reel-card{position:relative;justify-self:end;width:100%;max-width:290px;aspect-ratio:9/15.5;border-radius:28px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 6px rgba(255,255,255,.08),0 0 0 7px rgba(0,0,0,.6);transform:rotate(3deg);animation:reelIn 1.3s var(--spring) .8s both,float 7s ease-in-out 2.2s infinite;will-change:transform}
+.reel-card video{width:100%;height:100%;object-fit:cover}
+@keyframes reelIn{from{opacity:0;transform:translateY(80px) rotate(10deg) scale(.9)}to{opacity:1;transform:rotate(3deg)}}
+@keyframes float{50%{transform:rotate(1.5deg) translateY(-12px)}}
+.reel-tag{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:rgba(13,13,13,.72);backdrop-filter:blur(10px);font-size:13.5px;font-weight:600;line-height:1.3}
+.reel-tag .live{width:8px;height:8px;border-radius:50%;background:var(--orange);flex:none;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+.stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-radius:var(--r);overflow:hidden;background:var(--line);backdrop-filter:blur(12px);margin:0;animation:rise 1s var(--ease) 1.3s both}
+.stats div{background:rgba(13,13,13,.62);padding:20px 22px;min-width:0}
+.stats dt{font-size:13.5px;color:var(--steel);font-weight:500}
+.stats dd{margin:4px 0 0;font-family:var(--display);font-stretch:118%;font-weight:850;font-size:clamp(22px,2.6vw,34px);text-transform:uppercase;line-height:1.05;font-variant-numeric:tabular-nums}
+.stats dd span{color:var(--orange)}
+.scroll-cue{position:absolute;right:var(--gut);top:50%;z-index:1;writing-mode:vertical-rl;font-size:12.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);display:flex;align-items:center;gap:12px}
+.scroll-cue::after{content:"";width:1px;height:70px;background:linear-gradient(var(--orange),transparent);animation:cue 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}60%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;padding-top:120px}.reel-card,.scroll-cue{display:none}.stats{grid-template-columns:1fr 1fr}}
+
+/* tape */
+.tape{background:var(--orange);color:#1a0d00;overflow:hidden;transform:rotate(-1.2deg) scale(1.03);margin-block:-10px;position:relative;z-index:3;box-shadow:0 20px 40px -20px rgba(0,0,0,.8)}
+.tape-in{display:flex;width:max-content;animation:tape 36s linear infinite}
+.tape span{display:flex;align-items:center;gap:26px;font-family:var(--display);font-stretch:122%;font-weight:900;text-transform:uppercase;font-size:clamp(16px,2vw,22px);padding:14px 13px;white-space:nowrap}
+.tape span::after{content:"";width:10px;height:10px;background:#1a0d00;transform:rotate(45deg)}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* problem: stacking cards */
+.pains{display:grid;gap:14px;margin-top:clamp(36px,5vw,64px)}
+@media(min-width:800px){.pains:not(.is-stacking){grid-template-columns:1fr 1fr}}
+.pain{position:relative;overflow:hidden;background:var(--coal);color:var(--bone);border-radius:26px;padding:clamp(24px,3.4vw,44px);display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3vw,44px);align-items:start;box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+.pain::before{content:"";position:absolute;right:-80px;top:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(245,138,31,.22),transparent 65%)}
+.pain .no{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(40px,6vw,84px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px var(--orange)}
+.pain h3{font-size:clamp(22px,2.8vw,36px)}
+.pain .cost{margin-top:14px;color:#e7a989;font-size:16.5px}
+.pain .cost b{display:block;font-size:13px;color:var(--steel);font-weight:600;margin-bottom:2px}
+.pain .fix{position:relative;background:rgba(255,255,255,.05);border-radius:18px;padding:20px 22px;box-shadow:inset 0 0 0 1px var(--line)}
+.pain .fix b{display:flex;align-items:center;gap:10px;font-family:var(--display);font-stretch:110%;font-weight:800;text-transform:uppercase;font-size:17px;color:var(--amber);margin-bottom:8px;line-height:1.15}
+.pain .fix b svg{width:22px;height:22px;flex:none}
+.pain .fix p{color:#cfcec8;font-size:16px}
+.pains.is-stacking{display:block;max-width:980px;margin-inline:auto}
+.pains.is-stacking .pain{margin-bottom:5rem;transform-origin:top center;backface-visibility:hidden;will-change:transform,filter}
+.stack-end{height:1px;margin-top:30vh}
+@media(max-width:800px){.pain{grid-template-columns:1fr}.pain .no{font-size:44px}.pains.is-stacking .pain{margin-bottom:2.5rem}}
+.callout{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;border-radius:26px;background:linear-gradient(110deg,var(--orange),var(--amber));color:#1a0d00;padding:clamp(24px,3vw,38px)}
+.callout p{font-family:var(--display);font-stretch:118%;font-weight:900;text-transform:uppercase;font-size:clamp(22px,2.9vw,36px);line-height:1.02;max-width:20ch}
+
+/* services */
+.svcs{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:clamp(36px,5vw,64px);perspective:1400px}
+.svc{position:relative;grid-column:span 2;min-height:400px;border-radius:26px;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;text-decoration:none;color:var(--bone);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .5s var(--ease),box-shadow .5s;transform-style:preserve-3d;background:var(--char)}
+.svc.big{grid-column:span 3;min-height:460px}
+.svc img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease),filter .6s;filter:saturate(.9)}
+.svc::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(13,13,13,.95) 8%,rgba(13,13,13,.45) 55%,rgba(13,13,13,.15));transition:opacity .5s}
+.svc::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(245,138,31,.35),transparent 60%);opacity:0;transition:opacity .4s}
+.svc:hover{box-shadow:0 40px 70px -30px rgba(0,0,0,.9),0 0 0 1px rgba(245,138,31,.5)}
+.svc:hover img{transform:scale(1.09);filter:saturate(1.1)}
+.svc:hover::after{opacity:1}
+.svc .ix{position:absolute;left:26px;top:22px;font-family:var(--display);font-stretch:120%;font-weight:900;font-size:15px;padding:6px 12px;border-radius:999px;background:rgba(13,13,13,.6);backdrop-filter:blur(8px)}
+.svc h3{font-size:clamp(22px,2.4vw,32px)}
+.svc p{color:#d2d1cb;font-size:16px;margin-top:10px;max-width:44ch}
+.svc .go{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-weight:700;font-size:15px;color:var(--amber)}
+.svc .go svg{width:34px;height:34px;padding:8px;border-radius:50%;background:var(--orange);color:#1a0d00;transition:transform .4s var(--spring)}
+.svc:hover .go svg{transform:translateX(6px) rotate(-45deg)}
+@media(hover:hover) and (min-width:900px){.svc p,.svc .go{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .45s var(--ease)}.svc:hover p,.svc:hover .go,.svc:focus-visible p,.svc:focus-visible .go{opacity:1;transform:none}.svc:hover .go{transition-delay:.06s}}
+@media(max-width:980px){.svcs{grid-template-columns:1fr 1fr}.svc,.svc.big{grid-column:span 1;min-height:340px}}
+@media(max-width:620px){.svcs{grid-template-columns:1fr}.svc,.svc.big{min-height:300px}}
+
+/* story: scroll digs the block */
+.story{background:#090909;position:relative}
+.story-pin{padding-block:clamp(64px,9vw,110px)}
+.story-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:center}
+.plot{position:relative;border-radius:28px;overflow:hidden;background:#0f0f0e;box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 0 0 1px var(--line)}
+.plot svg{width:100%;height:auto}
+.hud{position:absolute;left:16px;top:16px;right:16px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}
+.hud span{padding:7px 13px;border-radius:999px;background:rgba(13,13,13,.75);backdrop-filter:blur(8px);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.hud span b{color:var(--amber)}
+.acts{display:grid;gap:22px;margin-top:34px}
+.act{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.act .n{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:17px;background:var(--char);color:var(--steel);transition:background .4s,color .4s,transform .5s var(--spring)}
+.act h3{font-size:clamp(20px,2.2vw,28px);font-stretch:112%}
+.act p{color:var(--steel);margin-top:8px;font-size:16.5px;max-width:44ch}
+/* scrubbed mode */
+.story.is-scrub{height:440vh}
+.story.is-scrub .story-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;padding-block:84px 24px}
+.story.is-scrub .story-pin>.wrap{width:100%}
+.story.is-scrub .acts{position:relative;margin-top:28px;min-height:210px}
+.story.is-scrub .act{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(30px);transition:opacity .5s var(--ease),transform .6s var(--ease);pointer-events:none}
+.story.is-scrub .act.on{opacity:1;transform:none}
+.story.is-scrub .act.gone{transform:translateY(-30px)}
+.story.is-scrub .h2{font-size:clamp(28px,3.5vw,50px);max-width:none}.story.is-scrub .act.on .n{background:var(--orange);color:#1a0d00;transform:scale(1.08)}
+.rail{display:none;gap:8px;margin-top:22px}
+.story.is-scrub .rail{display:flex}
+.rail i{flex:1;height:4px;border-radius:4px;background:var(--char);overflow:hidden}
+.rail i b{display:block;height:100%;background:linear-gradient(90deg,var(--ember),var(--amber));transform-origin:0 50%;transform:scaleX(0)}
+@media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:20px}.story-grid .plot{order:-1}.story.is-scrub .h2{font-size:28px;margin-top:8px}.story.is-scrub .lede{display:none}.story.is-scrub .acts{min-height:190px;margin-top:16px}.story.is-scrub .story-pin{align-items:flex-start;padding-top:78px}}
+
+/* work: depth carousel */
+.dc{position:relative;height:clamp(300px,62vw,520px);display:flex;align-items:center;justify-content:center;perspective:1400px;touch-action:pan-y;outline:none;user-select:none;cursor:grab;margin-top:clamp(20px,3vw,40px)}
+.dc:active{cursor:grabbing}
+.dc-stage{position:absolute;inset:0 0 50px;transform-style:preserve-3d;transform:translateX(var(--dc-shift,0px))}
+.dc-card{position:absolute;top:50%;left:50%;width:440px;height:330px;border-radius:24px;transform:translate(-50%,-50%);overflow:hidden;background:var(--char);box-shadow:0 40px 70px -30px rgba(0,0,0,.9);will-change:transform,opacity,filter;cursor:pointer}
+.dc-card img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.dc-tint{position:absolute;inset:0;opacity:0;pointer-events:none;background:#0d0d0d}
+.dc-cap{position:absolute;left:0;right:0;bottom:0;padding:50px 20px 18px;background:linear-gradient(0deg,rgba(13,13,13,.92),transparent);font-size:15px;line-height:1.35}
+.dc-cap b{display:block;font-family:var(--display);font-stretch:115%;font-weight:850;text-transform:uppercase;font-size:19px;color:var(--amber)}
+.dc-nav{position:absolute;left:0;right:0;bottom:0;z-index:3000;display:flex;align-items:center;justify-content:center;gap:8px}
+.nav-arrow{width:48px;height:48px;display:grid;place-items:center;border:0;border-radius:50%;background:var(--char);cursor:pointer;transition:background .25s,transform .3s var(--spring)}
+.nav-arrow:hover{background:var(--orange);color:#1a0d00;transform:scale(1.1)}
+.nav-arrow svg{width:20px;height:20px}
+.dc-dots{display:flex}
+.dc-dot{width:20px;height:44px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.dc-dot::before{content:"";width:7px;height:7px;border-radius:99px;background:var(--ash);transition:background .2s,width .3s var(--ease)}
+.dc-dot.is-active::before{width:22px;background:var(--orange)}
+.clips{display:grid;grid-template-columns:1.85fr 1fr 1fr;gap:14px;margin-top:clamp(30px,4vw,56px)}
+.clip{position:relative;border-radius:24px;overflow:hidden;background:#000;min-height:0}
+.clip video{width:100%;height:100%;object-fit:cover;aspect-ratio:9/14}
+.clip.wide video{position:absolute;inset:0;aspect-ratio:auto}
+.clip .play{position:absolute;inset:0;display:grid;place-items:center;border:0;cursor:pointer;background:linear-gradient(0deg,rgba(13,13,13,.75),rgba(13,13,13,.1) 50%);transition:opacity .4s}
+.clip .play i{width:74px;height:74px;border-radius:50%;background:var(--orange);display:grid;place-items:center;transition:transform .4s var(--spring);box-shadow:0 0 0 0 rgba(245,138,31,.6);animation:halo 2.2s infinite}
+@keyframes halo{70%{box-shadow:0 0 0 22px rgba(245,138,31,0)}100%{box-shadow:0 0 0 0 rgba(245,138,31,0)}}
+.clip .play:hover i{transform:scale(1.14)}
+.clip .play svg{width:26px;height:26px;color:#1a0d00;margin-left:4px}
+.clip .play span{position:absolute;left:18px;bottom:16px;font-weight:700;font-size:15.5px;text-align:left}
+.clip.playing .play{opacity:0;pointer-events:none}
+@media(max-width:760px){.clips{grid-template-columns:1fr 1fr}.clip.wide{grid-column:span 2;aspect-ratio:16/9}}
+
+/* who: tabs */
+.tabs{display:inline-flex;flex-wrap:wrap;gap:6px;padding:6px;border-radius:20px;background:var(--bone-2);margin-top:34px;position:relative}
+.tabs button{position:relative;z-index:1;border:0;background:none;cursor:pointer;padding:12px 20px;border-radius:14px;font-weight:700;font-size:15.5px;color:var(--ink-2);transition:color .3s}
+.tabs button[aria-selected=true]{color:var(--bone)}
+.tabs .pill{position:absolute;z-index:0;left:0;top:0;border-radius:14px;background:var(--ink);transition:transform .5s var(--spring),width .5s var(--spring),height .3s;will-change:transform}
+.panel{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:26px;background:#f7f6f1;border-radius:28px;padding:clamp(22px,3.4vw,44px);box-shadow:0 30px 60px -40px rgba(20,20,19,.4)}
+.panel>div{min-width:0}
+.panel .say{font-family:var(--display);font-stretch:112%;font-weight:800;text-transform:uppercase;font-size:clamp(22px,2.9vw,38px);line-height:1.05}
+.panel .say::before{content:"\201C";display:block;font-size:80px;line-height:.6;color:var(--orange);margin-bottom:6px}
+.panel p{color:var(--ink-2);margin-top:16px;max-width:50ch}
+.panel ul{list-style:none;padding:0;margin:20px 0 26px;display:grid;gap:10px}
+.panel li{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.panel li svg{width:22px;height:22px;flex:none;color:var(--clay);margin-top:2px}
+.panel figure{margin:0;border-radius:20px;overflow:hidden;aspect-ratio:4/3.1}
+.panel figure img{width:100%;height:100%;object-fit:cover}
+.panel.swap>div,.panel.swap>figure{animation:swap .6s var(--ease) both}
+.panel.swap>figure{animation-delay:.08s}
+@keyframes swap{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(max-width:820px){.panel{grid-template-columns:1fr}.tabs{display:flex}.tabs button{flex:1 1 40%}}
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.proof div{background:var(--ink);color:var(--bone);border-radius:22px;padding:24px;min-width:0}
+.proof strong{display:block;font-family:var(--display);font-stretch:122%;font-weight:900;font-size:clamp(34px,4.4vw,56px);line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+.proof span{display:block;margin-top:8px;color:var(--steel);font-size:15px}
+@media(max-width:820px){.proof{grid-template-columns:1fr 1fr}}
+
+/* quote wizard */
+.qz{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(20px,4vw,48px);margin-top:clamp(36px,5vw,56px);align-items:start}
+.wz{background:var(--coal);border-radius:28px;padding:clamp(22px,3.4vw,40px);box-shadow:inset 0 0 0 1px var(--line);min-width:0}
+.wz-top{display:flex;justify-content:space-between;align-items:center;gap:14px;font-weight:600;font-size:14.5px;color:var(--steel)}
+.wz-bar{height:6px;border-radius:6px;background:var(--char);margin:12px 0 30px;overflow:hidden}
+.wz-bar b{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--ember),var(--amber));transform-origin:0 50%;transform:scaleX(.2);transition:transform .6s var(--ease)}
+.wz fieldset{border:0;padding:0;margin:0;min-width:0}
+.wz legend{padding:0;font-family:var(--display);font-stretch:114%;font-weight:850;text-transform:uppercase;font-size:clamp(22px,2.7vw,32px);line-height:1.05;margin-bottom:6px}
+.wz .hint{color:var(--steel);font-size:15.5px;margin-bottom:22px}
+.wz-step.show{animation:stepIn .5s var(--ease) both}
+@keyframes stepIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts label{position:relative;cursor:pointer;min-width:0}
+.opts input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.opts span{display:flex;align-items:center;gap:12px;min-height:62px;padding:12px 16px;border-radius:16px;background:var(--char);box-shadow:inset 0 0 0 1px var(--line);font-weight:600;font-size:15.5px;line-height:1.25;transition:background .25s,box-shadow .25s,transform .3s var(--spring),color .25s}
+.opts span::before{content:"";width:20px;height:20px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 2px var(--steel);transition:box-shadow .25s,background .25s}
+.opts label:hover span{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--orange)}
+.opts input:checked+span{background:var(--orange);color:#1a0d00;box-shadow:none}
+.opts input:checked+span::before{box-shadow:inset 0 0 0 6px #1a0d00;background:var(--orange)}
+.opts input:focus-visible+span{outline:3px solid var(--amber);outline-offset:2px}
+.fields{display:grid;gap:12px}
+.fields label{display:block;font-weight:600;font-size:14.5px;color:var(--steel);margin-bottom:6px}
+.wz input[type=text],.wz input[type=tel]{width:100%;min-height:56px;border-radius:14px;background:var(--char);border:1px solid var(--line);color:var(--bone);font:500 16px var(--body);padding:0 16px;transition:border-color .2s,box-shadow .2s}
+.wz input::placeholder{color:#74777a}
+.wz input[type=text]:focus,.wz input[type=tel]:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 4px rgba(245,138,31,.2)}
+.wz-nav{display:flex;justify-content:space-between;gap:12px;margin-top:26px}
+.wz-nav .btn{min-height:50px}
+.wz-nav .btn[disabled]{opacity:.35;pointer-events:none}
+.docket{position:sticky;top:96px;background:var(--bone);color:var(--ink);border-radius:26px 26px 6px 6px;padding:26px 24px 30px;min-width:0;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5));-webkit-mask:radial-gradient(8px at 8px 100%,transparent 98%,#000) -8px 0/16px 100%;mask:radial-gradient(8px at 8px 100%,transparent 98%,#000) -8px 0/16px 100%}
+.docket h3{font-size:20px;font-stretch:112%;display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding-bottom:14px;border-bottom:2px dashed var(--line-k)}
+.docket h3 small{font-family:var(--body);font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--clay)}
+.docket dl{margin:14px 0 18px;display:grid;gap:0}
+.docket dl div{display:grid;grid-template-columns:86px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-k);font-size:15px}
+.docket dt{color:var(--ink-2);font-weight:500}
+.docket dd{margin:0;font-weight:700;min-width:0;word-break:break-word}
+.docket dd.empty{color:#a9a79e;font-weight:500}
+.docket dd.flash{animation:flash .7s var(--ease)}
+@keyframes flash{from{background:rgba(245,138,31,.5)}to{background:transparent}}
+.docket .btn{width:100%}
+.docket .btn+.btn{margin-top:10px}
+.docket .fine{margin-top:14px;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+@media(max-width:900px){.qz{grid-template-columns:1fr}.docket{position:relative;top:0}}
+@media(max-width:480px){.opts{grid-template-columns:1fr}}
+
+/* areas radar */
+.areas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:center}
+.radar{position:relative;aspect-ratio:1;max-width:540px;width:100%;justify-self:center}
+.radar svg{width:100%;height:100%;overflow:visible}
+.radar .rg{fill:none;stroke:rgba(255,255,255,.12)}
+.radar .sweep{transform-origin:250px 250px;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.radar .pulse{fill:none;stroke:var(--orange);transform-origin:250px 250px;animation:pulse 3s ease-out infinite}
+@keyframes pulse{from{transform:scale(.1);opacity:.9}to{transform:scale(1);opacity:0}}
+.radar .sub circle{fill:var(--amber);transform-box:fill-box;transform-origin:center;transition:transform .6s var(--spring);transition-delay:calc(var(--i)*90ms)}
+.radar .sub text{fill:var(--bone);font:600 12.5px var(--body);transition:opacity .6s;transition-delay:calc(var(--i)*90ms + 150ms)}
+.radar.pre .sub circle{transform:scale(0)}
+.radar.pre .sub text{opacity:0}
+.radar .hq text{fill:#1a0d00;font:900 12px var(--display)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:26px 0 0}
+.chips li{padding:8px 14px;border-radius:999px;background:var(--char);font-size:14.5px;font-weight:600;transition:background .25s,color .25s,transform .3s var(--spring)}
+.chips li:hover{background:var(--orange);color:#1a0d00;transform:translateY(-3px)}
+@media(max-width:860px){.areas{grid-template-columns:1fr}}
+
+/* faq */
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,72px);align-items:start}
+.faq-side{position:sticky;top:110px}
+.faq{display:grid;gap:10px}
+.qa{border-radius:20px;background:var(--coal);box-shadow:inset 0 0 0 1px var(--line);transition:background .3s,box-shadow .3s}
+.qa.open{background:var(--char);box-shadow:inset 0 0 0 1px rgba(245,138,31,.5)}
+.qa button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;width:100%;justify-content:space-between;align-items:center;gap:18px;padding:22px 24px;font-family:var(--display);font-stretch:108%;font-weight:750;font-size:clamp(17px,1.8vw,21px);text-transform:uppercase;line-height:1.15}
+.qa button:focus-visible{outline:3px solid var(--amber);outline-offset:-3px;border-radius:20px}
+.qa button i{position:relative;width:34px;height:34px;border-radius:50%;background:var(--ash);flex:none;transition:background .3s,transform .5s var(--spring)}
+.qa button i::before,.qa button i::after{content:"";position:absolute;left:10px;right:10px;top:16px;height:2px;background:var(--bone);transition:transform .4s var(--ease),background .3s}
+.qa button i::after{transform:rotate(90deg)}
+.qa.open button i{background:var(--orange);transform:rotate(180deg)}
+.qa.open button i::before,.qa.open button i::after{background:#1a0d00}
+.qa.open button i::after{transform:rotate(0)}
+.qa .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.qa.open .a{grid-template-rows:1fr}
+.qa .a>div{overflow:hidden}
+.qa .a p{color:var(--steel);padding:0 24px 24px;max-width:66ch}
+@media(max-width:860px){.faq-grid{grid-template-columns:1fr}.faq-side{position:static}}
+
+/* final + footer */
+.final{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--ember),var(--orange) 40%,var(--amber));color:#1a0d00;border-radius:36px 36px 0 0}
+.final .wrap{display:grid;gap:24px;position:relative;z-index:1}
+.final h2{font-size:clamp(40px,7.6vw,108px);font-stretch:125%;font-weight:900;line-height:.9;max-width:12ch}
+.final p{font-size:19px;max-width:50ch;font-weight:500}
+.final .num{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(40px,9vw,128px);line-height:.95;text-decoration:none;width:fit-content;max-width:100%;background-image:linear-gradient(#1a0d00,#1a0d00);background-size:100% 6px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .5s var(--ease),color .4s;padding-bottom:6px}
+.final .num:hover{background-size:100% 100%;color:var(--amber)}
+.final .digger{position:absolute;right:-4%;bottom:-8%;width:min(48vw,560px);opacity:.14;z-index:0;pointer-events:none}
+footer{background:var(--pit);padding-block:56px 110px;color:var(--steel);font-size:15px;overflow:hidden}
+footer .cols{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+footer img{height:88px;width:auto;margin-left:-4px}
+footer h4{margin:0 0 12px;font-weight:700;font-size:14px;color:var(--orange)}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+footer a{text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--bone)}
+.legal{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;font-size:13.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.giant{font-family:var(--display);font-stretch:125%;font-weight:900;text-transform:uppercase;font-size:clamp(70px,17vw,260px);line-height:.8;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);margin-top:36px;padding-bottom:90px;will-change:transform;user-select:none}
+@media(max-width:760px){footer .cols{grid-template-columns:1fr}}
+@media(min-width:761px){footer{padding-bottom:40px}}
+
+/* mobile action bar */
+.bar{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:60;display:none;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border-radius:20px;background:rgba(13,13,13,.86);backdrop-filter:blur(14px);box-shadow:0 20px 40px -10px rgba(0,0,0,.8),inset 0 0 0 1px var(--line);transform:translateY(140%);transition:transform .6s var(--spring)}
+.bar.show{transform:none}
+.bar .btn{min-height:50px;padding:0 10px;font-size:14px}
+@media(max-width:760px){.bar{display:grid}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .split.pre .w>i,.fade.pre{transform:none;opacity:1}
+  .wipe.pre{clip-path:none}
+  .bar{transform:none}
+  .radar.pre .sub circle{transform:none}.radar.pre .sub text{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="NJ Civil Group home"><img src="assets/logo.png" alt="NJ Civil Group" width="466" height="377"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#how">How it runs</a>
+      <a href="#work">Our work</a>
+      <a href="#areas">Areas</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="top-cta">
+      <a class="top-num" href="tel:+61423332202"><span class="ring-dot" aria-hidden="true"></span>0423 332 202</a>
+      <a class="btn btn-o" href="#quote">Get a quote</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="prog" id="prog"></div>
+</header>
+<div class="menu" id="menu">
+  <a href="#services" style="--i:0">Services</a>
+  <a href="#how" style="--i:1">How it runs</a>
+  <a href="#work" style="--i:2">Our work</a>
+  <a href="#areas" style="--i:3">Areas</a>
+  <a href="#faq" style="--i:4">FAQ</a>
+  <a class="btn btn-o" href="tel:+61423332202" style="--i:5">Ring 0423 332 202</a>
+</div>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-media" id="heroMedia">
+    <video id="heroVid" muted loop playsinline preload="metadata" poster="assets/hero.jpg"><source src="assets/hero.mp4" type="video/mp4"></video>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <span class="scroll-cue" aria-hidden="true">Scroll</span>
+  <div class="wrap">
+    <div>
+      <span class="badge"><span class="ring-dot" aria-hidden="true"></span>Answering now <b>/ 24 hours, 7 days</b></span>
+      <h1><span class="ln"><span>Dug right.</span></span><span class="ln"><span>Carted off.</span></span><span class="ln"><span>Ready to pour.</span></span></h1>
+      <p class="hero-sub">Your whole build is waiting on the dig. We cut to your set-out, hit the levels on the engineer's drawings, get the spoil off site and hand over a clean pad your concreter can walk straight onto.</p>
+      <div class="btn-row">
+        <a class="btn btn-o" href="#quote">Price my dig
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-g" href="tel:+61423332202">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1z"/></svg>
+          Ring 0423 332 202</a>
+      </div>
+      <p class="hero-note"><b>Got plans?</b> Send them through and we'll price it off the drawings. Fixed price, in writing.</p>
+    </div>
+    <div class="reel-card" aria-hidden="true">
+      <video id="reelVid" muted loop playsinline preload="metadata" poster="assets/carpark.jpg"><source src="assets/carpark.mp4" type="video/mp4"></video>
+      <div class="reel-tag"><span class="live"></span>On site this week: car park levelled and rolled</div>
+    </div>
+    <dl class="stats">
+      <div><dt>Google rating</dt><dd><span data-count="5.0" data-dec="1">5.0</span> stars</dd></div>
+      <div><dt>Phone answered</dt><dd><span data-count="24">24</span>/<span data-count="7">7</span></dd></div>
+      <div><dt>Cover</dt><dd>Fully insured</dd></div>
+      <div><dt>Patch</dt><dd>All of Sydney</dd></div>
+    </dl>
+  </div>
+</section>
+
+<div class="tape" aria-hidden="true">
+  <div class="tape-in">
+    <span>Bulk excavation</span><span>Detailed excavation</span><span>Piering</span><span>Footings</span><span>Trenching</span><span>Drainage</span><span>Site prep</span><span>Levelling and compaction</span><span>Spoil removal</span>
+    <span>Bulk excavation</span><span>Detailed excavation</span><span>Piering</span><span>Footings</span><span>Trenching</span><span>Drainage</span><span>Site prep</span><span>Levelling and compaction</span><span>Spoil removal</span>
+  </div>
+</div>
+
+<section class="sec on-bone" id="problem">
+  <div class="wrap">
+    <span class="kick">Why the dig matters</span>
+    <h2 class="h2 split">The cheapest part of your build is the dearest one to stuff up.</h2>
+    <p class="lede fade">Everything else stacks on top of the excavation. When it's late, over-dug or out of position, you wear it in concrete, in trades standing around and in weeks you can't get back. Five things go wrong on Sydney sites. Here's how we shut each one down.</p>
+
+    <div class="pains" id="pains">
+      <article class="pain"><span class="no">01</span>
+        <div><h3>The operator doesn't show</h3><p class="cost"><b>What it costs you</b>Pump, concreter and steel all pushed back. One lost day turns into a lost fortnight.</p></div>
+        <div class="fix"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M4 12.5l5 5L20 6.5"/></svg>We lock a date and turn up on it</b><p>If the weather moves it, you hear from us first, with a new date. No radio silence.</p></div></article>
+      <article class="pain"><span class="no">02</span>
+        <div><h3>Over-dug footings</h3><p class="cost"><b>What it costs you</b>Every extra 50 mm of depth is concrete you pay for and never see again.</p></div>
+        <div class="fix"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M4 12.5l5 5L20 6.5"/></svg>Dug to the drawings, not by eye</b><p>Levels checked as we go. Trenches kept clean and square so the pour matches the quote.</p></div></article>
+      <article class="pain"><span class="no">03</span>
+        <div><h3>Piers in the wrong spot</h3><p class="cost"><b>What it costs you</b>Failed inspection, engineer back out, a redrill and a slab date that slides.</p></div>
+        <div class="fix"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M4 12.5l5 5L20 6.5"/></svg>Set out off your surveyor's pegs</b><p>Every pier on the engineer's grid, down to depth, ready for the inspector to tick off.</p></div></article>
+      <article class="pain"><span class="no">04</span>
+        <div><h3>Spoil left sitting on site</h3><p class="cost"><b>What it costs you</b>No room for the next trade, mud on the street and a neighbour on the phone to council.</p></div>
+        <div class="fix"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M4 12.5l5 5L20 6.5"/></svg>Dug and carted in the one go</b><p>Trucks are booked with the machine, so the dirt leaves the same day it comes out.</p></div></article>
+      <article class="pain"><span class="no">05</span>
+        <div><h3>Tight block, close neighbours</h3><p class="cost"><b>What it costs you</b>Cracked driveways, flattened fences and an insurance argument nobody wins.</p></div>
+        <div class="fix"><b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M4 12.5l5 5L20 6.5"/></svg>Right size machine for the block</b><p>Careful operators, fully insured, and boundaries treated like they're our own.</p></div></article>
+    </div>
+
+    <div class="callout fade">
+      <p>One crew. One price. One number to ring.</p>
+      <div class="btn-row">
+        <a class="btn btn-k" href="#quote">Price my dig</a>
+        <a class="btn btn-k" href="tel:+61423332202">Ring 0423 332 202</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="head-row">
+      <div><span class="kick">What we do</span>
+      <h2 class="h2 split">From the ground up. Literally.</h2></div>
+      <p class="lede fade">Residential, commercial and infrastructure jobs right across Sydney. Tap a service to price it.</p>
+    </div>
+    <div class="svcs">
+      <a class="svc big wipe" href="#quote" data-job="Bulk excavation"><img src="assets/f3.jpg" alt="Two excavators working a residential site, seen from a drone" loading="lazy"><span class="ix">01</span><h3>Bulk excavation</h3><p>Big cuts, basements, benching and site strips. We move the volume fast and leave the bench at the level on your plans.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="svc big wipe" href="#quote" data-job="Footings / detailed excavation"><img src="assets/p10.jpg" alt="Footing trenches cut in a clean grid, top-down drone view" loading="lazy"><span class="ix">02</span><h3>Detailed excavation and footings</h3><p>Strip footings, edge beams and pads cut tight to the set-out, so your steel drops in and your concrete order is right.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="svc wipe" href="#quote" data-job="Piering"><img src="assets/p7.jpg" alt="Rows of pier holes drilled across a site, top-down drone view" loading="lazy"><span class="ix">03</span><h3>Piering</h3><p>Pier holes on the engineer's grid, down to depth, cleaned out and inspection ready.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="svc wipe" href="#quote" data-job="Trenching"><img src="assets/p4.jpg" alt="Service trenches on a site with an excavator working in the background" loading="lazy"><span class="ix">04</span><h3>Trenching</h3><p>Stormwater, sewer, power, water and comms. Right fall, right depth, backfilled and compacted.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="svc wipe" href="#quote" data-job="Drainage"><img src="assets/p2.jpg" alt="Trenched site prepared beside neighbouring homes" loading="lazy"><span class="ix">05</span><h3>Drainage</h3><p>Civil drainage sorted early, so the block sheds water and the build stays dry and on programme.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="svc wipe" href="#quote" data-job="Site prep / levelling" style="grid-column:1/-1;min-height:340px"><img src="assets/f2.jpg" alt="Truck and excavator on a cleared residential block, drone view" loading="lazy"><span class="ix">06</span><h3>Site prep, levelling and compaction</h3><p>Clear, trim, level and roll. Driveways, car parks, slabs and hardstand taken to finished level, detailed and ready for the big pour.</p><span class="go">Price this job<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="how">
+  <div class="story-pin">
+    <div class="wrap story-grid">
+      <div>
+        <span class="kick">How it runs</span>
+        <h2 class="h2">Keep scrolling. Watch your block get dug.</h2>
+        <p class="lede">Ring us or send your plans and you get a fixed price in writing. Then this is what happens on your site.</p>
+        <div class="rail" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+        <div class="acts">
+          <div class="act"><span class="n">1</span><div><h3>Strip and set out</h3><p>Grass, old slabs and rubbish gone. The block is scraped back to clean ground and the pad is strung out off your surveyor's pegs.</p></div></div>
+          <div class="act"><span class="n">2</span><div><h3>Pier to the grid</h3><p>Every pier drilled where the engineer drew it and down to depth. Holes cleaned out, ready for the inspector.</p></div></div>
+          <div class="act"><span class="n">3</span><div><h3>Cut the footings</h3><p>Edge beams and internal beams cut square and to level. Spoil goes straight in the truck, not in a pile on your nature strip.</p></div></div>
+          <div class="act"><span class="n">4</span><div><h3>Hand it over, ready to pour</h3><p>We walk it with you or your builder before we leave. Steel goes in, the pump turns up and pour day stays pour day.</p></div></div>
+        </div>
+      </div>
+      <div class="plot">
+        <svg id="plot" viewBox="0 0 640 440" role="img" aria-label="Plan view of a house block being stripped, piered, trenched and handed over ready for the slab">
+          <defs>
+            <clipPath id="cStrip"><rect id="stripClip" x="20" y="20" width="600" height="400"/></clipPath>
+            <clipPath id="cPour"><rect id="pourClip" x="104" y="64" width="432" height="312"/></clipPath>
+            <pattern id="tuft" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M4 14l2-5 2 5M14 6l2-4 2 4" stroke="#63753f" stroke-width="1.4" fill="none"/></pattern>
+            <pattern id="track" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(8)"><path d="M0 7h14" stroke="#9a4a25" stroke-width="1.2" opacity=".5"/></pattern>
+            <linearGradient id="clayG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#bb6034"/><stop offset="1" stop-color="#9c4a24"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="640" height="440" fill="#0f0f0e"/>
+          <rect x="20" y="20" width="600" height="400" rx="6" fill="#4f5e37"/>
+          <rect x="20" y="20" width="600" height="400" rx="6" fill="url(#tuft)"/>
+          <g id="oldStuff"><rect x="410" y="60" width="120" height="84" rx="4" fill="#8d8f8a"/><rect x="420" y="70" width="100" height="64" rx="2" fill="#a3a5a0"/><circle cx="120" cy="330" r="34" fill="#3d4c29"/><circle cx="108" cy="318" r="18" fill="#47592f"/><circle cx="210" cy="96" r="24" fill="#3d4c29"/></g>
+          <g clip-path="url(#cStrip)"><rect x="20" y="20" width="600" height="400" rx="6" fill="url(#clayG)"/><rect x="20" y="20" width="600" height="400" fill="url(#track)"/></g>
+          <rect id="setout" x="104" y="64" width="432" height="312" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="8 7" opacity=".85"/>
+          <g id="trenches" stroke="#3b1c0c" stroke-width="13" stroke-linecap="square" fill="none"></g>
+          <g id="piers"></g>
+          <g clip-path="url(#cPour)"><rect id="slab" x="104" y="64" width="432" height="312" fill="#c9c8c1"/><rect x="104" y="64" width="432" height="312" fill="none" stroke="#a9a8a1" stroke-width="6"/></g>
+          <g id="digger"><rect x="-18" y="-22" width="36" height="8" rx="3" fill="#1b1b1a"/><rect x="-18" y="14" width="36" height="8" rx="3" fill="#1b1b1a"/><rect x="-14" y="-15" width="28" height="30" rx="5" fill="#f58a1f"/><rect x="-6" y="-9" width="12" height="13" rx="2" fill="#1b1b1a" opacity=".55"/><path d="M12 0h30" stroke="#9da1a4" stroke-width="6" stroke-linecap="round"/><path d="M40 -9h10l4 9-4 9H40z" fill="#f58a1f"/></g>
+          <g id="stamp" transform="translate(320 220)"><g id="stampIn"><circle r="62" fill="#0d0d0d" opacity=".9"/><circle r="52" fill="none" stroke="#f58a1f" stroke-width="3"/><path d="M-22 2l15 15 30-34" fill="none" stroke="#f58a1f" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+        </svg>
+        <div class="hud"><span id="hudStage"><b>Handover</b> / ready to pour</span><span id="hudRL">RL <b>-0.60</b> m</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec on-coal" id="work">
+  <div class="wrap">
+    <div class="head-row">
+      <div><span class="kick">Proof from above</span>
+      <h2 class="h2 split">You can't fake a straight trench from a drone.</h2></div>
+      <p class="lede fade">So we put one up over our jobs. Drag through the shots and look at the lines, the spacing and how clean each site is left.</p>
+    </div>
+  </div>
+  <div class="dc" id="depth" tabindex="0" role="region" aria-roledescription="carousel" aria-label="NJ Civil Group job photos">
+    <div class="dc-stage">
+      <div class="dc-card"><img src="assets/p8.jpg" alt="Grid of footing trenches, top-down drone view"><span class="dc-tint"></span><div class="dc-cap"><b>Detailed excavation</b>Slab grid cut square, ready for steel</div></div>
+      <div class="dc-card"><img src="assets/p7.jpg" alt="Pier holes across a full block, top-down drone view"><span class="dc-tint"></span><div class="dc-cap"><b>Piering</b>Full grid drilled to the engineer's set-out</div></div>
+      <div class="dc-card"><img src="assets/f3.jpg" alt="Excavators at work on a residential site"><span class="dc-tint"></span><div class="dc-cap"><b>Bulk excavation</b>Machines matched to the block</div></div>
+      <div class="dc-card"><img src="assets/p4.jpg" alt="Footing trenches at ground level with an excavator behind"><span class="dc-tint"></span><div class="dc-cap"><b>Footings</b>Down to level on a sloping site</div></div>
+      <div class="dc-card"><img src="assets/p9.jpg" alt="Pier holes in neat rows across a block"><span class="dc-tint"></span><div class="dc-cap"><b>Piering</b>Rows you could run a stringline down</div></div>
+      <div class="dc-card"><img src="assets/f4.jpg" alt="Narrow residential block with pier holes between two homes"><span class="dc-tint"></span><div class="dc-cap"><b>Tight access</b>Narrow block, homes on both sides</div></div>
+      <div class="dc-card"><img src="assets/p3.jpg" alt="Bulk excavation beside a new two storey home"><span class="dc-tint"></span><div class="dc-cap"><b>Bulk excavation</b>Cut hard up against the neighbours</div></div>
+      <div class="dc-card"><img src="assets/p10.jpg" alt="Footing grid from directly above"><span class="dc-tint"></span><div class="dc-cap"><b>Footings</b>Clean edges, right depth</div></div>
+    </div>
+    <div class="dc-nav">
+      <button class="nav-arrow dc-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="dc-dots"><button class="dc-dot is-active" aria-label="Photo 1"></button><button class="dc-dot" aria-label="Photo 2"></button><button class="dc-dot" aria-label="Photo 3"></button><button class="dc-dot" aria-label="Photo 4"></button><button class="dc-dot" aria-label="Photo 5"></button><button class="dc-dot" aria-label="Photo 6"></button><button class="dc-dot" aria-label="Photo 7"></button><button class="dc-dot" aria-label="Photo 8"></button></div>
+      <button class="nav-arrow dc-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="clips">
+      <div class="clip wide wipe"><video muted playsinline preload="none" poster="assets/piers.jpg"><source src="assets/piers.mp4" type="video/mp4"></video><button class="play" aria-label="Play drone video of piers and footings"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></i><span>Drone flyover: piers and footings</span></button></div>
+      <div class="clip wipe"><video muted playsinline preload="none" poster="assets/carpark.jpg"><source src="assets/carpark.mp4" type="video/mp4"></video><button class="play" aria-label="Play car park levelling video"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></i><span>Car park levelling</span></button></div>
+      <div class="clip wipe"><video muted playsinline preload="none" poster="assets/drone.jpg"><source src="assets/drone.mp4" type="video/mp4"></video><button class="play" aria-label="Play site works video"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></i><span>Site works</span></button></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec on-bone" id="who">
+  <div class="wrap">
+    <span class="kick">Who we dig for</span>
+    <h2 class="h2 split">Whoever's holding the plans, we've got your back.</h2>
+    <div class="tabs" role="tablist" aria-label="Who are you?" id="tabs">
+      <span class="pill" aria-hidden="true"></span>
+      <button role="tab" aria-selected="true" data-k="builder">I'm a builder</button>
+      <button role="tab" aria-selected="false" data-k="concreter">I'm a concreter</button>
+      <button role="tab" aria-selected="false" data-k="owner">I'm an owner-builder</button>
+      <button role="tab" aria-selected="false" data-k="dev">Developer or commercial</button>
+    </div>
+    <div class="panel" id="panel" role="tabpanel">
+      <div>
+        <p class="say" id="pSay">I need it done Thursday so the steel can go in Friday.</p>
+        <p id="pTxt">You need a subbie who turns up, reads the drawings and doesn't need babysitting. Give us the set-out and the programme and tick excavation off your list.</p>
+        <ul id="pList"></ul>
+        <a class="btn btn-k" href="#quote">Price my dig</a>
+      </div>
+      <figure><img id="pImg" src="assets/f2.jpg" alt="NJ Civil Group crew and machines on a residential site" loading="lazy"></figure>
+    </div>
+    <div class="proof">
+      <div class="fade"><strong><span data-count="5.0" data-dec="1">5.0</span></strong><span>Star rating on Google</span></div>
+      <div class="fade" style="--d:80ms"><strong><span data-count="24">24</span>/<span data-count="7">7</span></strong><span>We pick up the phone</span></div>
+      <div class="fade" style="--d:160ms"><strong><span data-count="6">6</span></strong><span>Services, one crew, one invoice</span></div>
+      <div class="fade" style="--d:240ms"><strong><span data-count="100">100</span>%</strong><span>Insured, ABN and GST registered</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="quote">
+  <div class="wrap">
+    <span class="kick">Price my dig</span>
+    <h2 class="h2 split">Five taps. One fixed price.</h2>
+    <p class="lede fade">Answer a few quick questions and your job brief writes itself. Text it straight to our phone and we'll ring you back to line up a look at the plans.</p>
+
+    <form class="qz" id="qb" novalidate>
+      <div class="wz">
+        <div class="wz-top"><span id="wzCount">Step 1 of 5</span><span>Takes about 30 seconds</span></div>
+        <div class="wz-bar"><b id="wzBar"></b></div>
+
+        <fieldset class="wz-step show" data-key="job"><legend>What do you need done?</legend><p class="hint">Pick as many as you like.</p>
+          <div class="opts">
+            <label><input type="checkbox" name="job" value="Bulk excavation" id="j1"><span>Bulk excavation</span></label>
+            <label><input type="checkbox" name="job" value="Footings / detailed excavation" id="j2"><span>Footings</span></label>
+            <label><input type="checkbox" name="job" value="Piering" id="j3"><span>Piering</span></label>
+            <label><input type="checkbox" name="job" value="Trenching" id="j4"><span>Trenching</span></label>
+            <label><input type="checkbox" name="job" value="Drainage" id="j5"><span>Drainage</span></label>
+            <label><input type="checkbox" name="job" value="Site prep / levelling" id="j6"><span>Site prep and levelling</span></label>
+          </div></fieldset>
+        <fieldset class="wz-step" data-key="site" hidden><legend>What sort of site is it?</legend><p class="hint">Just the closest match.</p>
+          <div class="opts">
+            <label><input type="radio" name="site" value="New home / knockdown rebuild" id="s1"><span>New home or knockdown rebuild</span></label>
+            <label><input type="radio" name="site" value="Duplex / granny flat" id="s2"><span>Duplex or granny flat</span></label>
+            <label><input type="radio" name="site" value="Extension / pool / backyard" id="s3"><span>Extension, pool or backyard</span></label>
+            <label><input type="radio" name="site" value="Commercial / civil" id="s4"><span>Commercial or civil</span></label>
+          </div></fieldset>
+        <fieldset class="wz-step" data-key="access" hidden><legend>How's the access?</legend><p class="hint">It decides which machine we bring.</p>
+          <div class="opts">
+            <label><input type="radio" name="access" value="Easy, straight off the street" id="a1"><span>Easy, straight off the street</span></label>
+            <label><input type="radio" name="access" value="Tight, down the side" id="a2"><span>Tight, down the side</span></label>
+            <label><input type="radio" name="access" value="Sloping or tricky" id="a3"><span>Sloping or tricky</span></label>
+            <label><input type="radio" name="access" value="Not sure" id="a4"><span>Not sure, come have a look</span></label>
+          </div></fieldset>
+        <fieldset class="wz-step" data-key="when" hidden><legend>When do you need us?</legend><p class="hint">We'll tell you straight if we can make it.</p>
+          <div class="opts">
+            <label><input type="radio" name="when" value="ASAP" id="w1"><span>ASAP</span></label>
+            <label><input type="radio" name="when" value="Next 2 to 4 weeks" id="w2"><span>Next 2 to 4 weeks</span></label>
+            <label><input type="radio" name="when" value="1 to 3 months" id="w3"><span>1 to 3 months</span></label>
+            <label><input type="radio" name="when" value="Just pricing for now" id="w4"><span>Just pricing for now</span></label>
+          </div></fieldset>
+        <fieldset class="wz-step" data-key="you" hidden><legend>Last one. Who are we ringing?</legend><p class="hint">Then hit the orange button on your job brief.</p>
+          <div class="fields">
+            <div><label for="fName">Your name</label><input type="text" id="fName" autocomplete="name" placeholder="e.g. Sam"></div>
+            <div><label for="fSub">Suburb of the job</label><input type="text" id="fSub" autocomplete="address-level2" placeholder="e.g. Burwood"></div>
+            <div><label for="fPh">Best number</label><input type="tel" id="fPh" autocomplete="tel" placeholder="04xx xxx xxx"></div>
+          </div></fieldset>
+
+        <div class="wz-nav">
+          <button type="button" class="btn btn-g" id="wzBack" disabled>Back</button>
+          <button type="button" class="btn btn-o" id="wzNext">Next</button>
+        </div>
+      </div>
+
+      <aside class="docket" aria-live="polite">
+        <h3>Your job brief <small>NJ CIVIL GROUP</small></h3>
+        <dl>
+          <div><dt>Job</dt><dd id="dJob" class="empty">Not picked yet</dd></div>
+          <div><dt>Site</dt><dd id="dSite" class="empty">Not picked yet</dd></div>
+          <div><dt>Access</dt><dd id="dAccess" class="empty">Not picked yet</dd></div>
+          <div><dt>Timing</dt><dd id="dWhen" class="empty">Not picked yet</dd></div>
+          <div><dt>Suburb</dt><dd id="dSub" class="empty">Not added yet</dd></div>
+          <div><dt>Name</dt><dd id="dName" class="empty">Not added yet</dd></div>
+        </dl>
+        <a class="btn btn-o" id="smsBtn" href="sms:+61423332202">Text this to 0423 332 202</a>
+        <a class="btn btn-k" href="tel:+61423332202">Or ring 0423 332 202</a>
+        <p class="fine">The text opens in your own messages app, ready to send. Attach your plans or a photo of the block for a sharper price.</p>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<section class="sec on-coal" id="areas">
+  <div class="wrap areas">
+    <div>
+      <span class="kick">Where we work</span>
+      <h2 class="h2 split">Based in Auburn. Digging all over Sydney.</h2>
+      <p class="lede fade">Smack in the middle of Sydney, so we're never far from your site. Inner West, the Hills, the south and right out to the south west. Suburb not listed? Ring us anyway.</p>
+      <ul class="chips fade">
+        <li>Auburn</li><li>Lidcombe</li><li>Greenacre</li><li>Potts Hill</li><li>Burwood</li><li>Abbotsford</li><li>Villawood</li><li>Clyde</li><li>Camellia</li><li>Rookwood</li><li>Parramatta</li><li>Hurstville</li><li>West Pennant Hills</li><li>Campbelltown</li>
+      </ul>
+      <div class="btn-row" style="margin-top:28px"><a class="btn btn-o" href="tel:+61423332202">Ring 0423 332 202</a></div>
+    </div>
+    <div class="radar" id="radar">
+      <svg viewBox="0 0 500 500" role="img" aria-label="Map showing NJ Civil Group's Auburn base and the Sydney suburbs it services">
+        <defs><linearGradient id="swp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f58a1f" stop-opacity="0"/><stop offset="1" stop-color="#f58a1f" stop-opacity=".45"/></linearGradient></defs>
+        <circle class="rg" cx="250" cy="250" r="70"/><circle class="rg" cx="250" cy="250" r="130"/><circle class="rg" cx="250" cy="250" r="190"/><circle class="rg" cx="250" cy="250" r="240" stroke-dasharray="4 8"/>
+        <path class="rg" d="M10 250h480M250 10v480"/>
+        <path class="sweep" d="M250 250 L490 250 A240 240 0 0 0 420 80 Z" fill="url(#swp)"/>
+        <circle class="pulse" cx="250" cy="250" r="240" stroke-width="2"/>
+        <circle class="pulse" cx="250" cy="250" r="240" stroke-width="2" style="animation-delay:1.5s"/>
+        <g id="subs"></g>
+        <g class="hq"><circle cx="250" cy="250" r="27" fill="#f58a1f"/><text x="250" y="254" text-anchor="middle">AUBURN</text></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-side">
+      <span class="kick">Straight answers</span>
+      <h2 class="h2 split">What people ask before they book.</h2>
+      <p class="lede fade">Can't see your question? It's quicker to ring. We answer day and night.</p>
+      <div class="btn-row" style="margin-top:26px"><a class="btn btn-g" href="tel:+61423332202">Ring 0423 332 202</a></div>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="qa open"><button type="button" aria-expanded="true">How much does excavation cost in Sydney?<i></i></button><div class="a"><div><p>It depends on how much dirt is coming out, what's under the surface, how tight the access is and where the spoil has to go. That's why we price each job off the plans instead of throwing out a rough hourly guess. Send the drawings through and you'll get one fixed number in writing.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Do you take the spoil away?<i></i></button><div class="a"><div><p>Yes. Trucks are organised with the machine so the dirt goes the same day it's dug. Cartage and tip fees are spelled out in your quote, so there is nothing to argue about later.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">What if you hit rock or clay?<i></i></button><div class="a"><div><p>Sydney is full of both. We'll look at your geotech report if you have one and talk through the likely ground before we start. If something unexpected turns up, we stop, show you and agree a price before going any further.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Can you get into a tight block?<i></i></button><div class="a"><div><p>Most of the time, yes. We match the machine to the access, including mini excavators for narrow side passages and backyards. Send a photo of the access and we'll tell you straight whether it works.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">Are you insured?<i></i></button><div class="a"><div><p>Yes. Fully insured, ABN registered and GST registered. We can send a certificate of currency with your quote if your builder or certifier needs it.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false">How soon can you start?<i></i></button><div class="a"><div><p>Ring us and ask. If the plans are ready and the site is clear we can often slot you in quickly, and we answer the phone 24 hours a day, 7 days a week.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec final">
+  <svg class="digger" viewBox="0 0 200 160" aria-hidden="true"><path d="M20 130h110v14H20zM34 96h70v30H34zM62 62h40v34H62zM100 70l52-44 12 10-46 46zM152 26l30 52-12 6-30-48zM170 80l22 6-10 30h-24z" fill="#1a0d00"/></svg>
+  <div class="wrap">
+    <h2 class="split">Your slab is waiting on a dig.</h2>
+    <p class="fade">Don't let it wait on a phone call. Ring now, tell us about the block and get a fixed price you can hold us to.</p>
+    <a class="num" href="tel:+61423332202">0423 332 202</a>
+    <div class="btn-row">
+      <a class="btn btn-k" href="tel:+61423332202">Ring NJ Civil now</a>
+      <a class="btn btn-k" href="#quote">Build my job brief</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <img src="assets/logo.png" alt="NJ Civil Group" width="466" height="377" loading="lazy">
+        <p style="max-width:34ch;margin-top:8px">Sydney civil construction and excavation. Safe, efficient and done right. From the ground up.</p>
+      </div>
+      <div><h4>Services</h4>
+        <ul><li>Bulk excavation</li><li>Detailed excavation and footings</li><li>Piering</li><li>Trenching and drainage</li><li>Site prep and levelling</li></ul></div>
+      <div><h4>Get in touch</h4>
+        <ul><li><a href="tel:+61423332202">0423 332 202</a></li><li>Auburn NSW 2144</li><li>Open 24 hours, 7 days</li><li><a href="https://www.instagram.com/njcivilgroup/" target="_blank" rel="noopener">Instagram @njcivilgroup</a></li></ul></div>
+    </div>
+    <div class="legal"><span>NJ Civil Group Pty Ltd / ABN 89 691 278 930</span><span>Website concept by <a href="https://magolabs.in" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px">Mago Labs</a></span></div>
+  </div>
+  </footer>
+
+<nav class="bar" id="bar" aria-label="Quick contact">
+  <a class="btn btn-o" href="tel:+61423332202">Ring now</a>
+  <a class="btn btn-g" href="#quote">Get a quote</a>
+</nav>
+
+<script>
+(function(){
+'use strict';
+var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function(s, r){ return (r || document).querySelector(s); };
+var $$ = function(s, r){ return [].slice.call((r || document).querySelectorAll(s)); };
+var clamp = function(v, a, b){ return Math.min(Math.max(v, a), b); };
+var easeOut = function(t){ return 1 - Math.pow(1 - t, 3); };
+
+/* ---------- videos ---------- */
+if (!REDUCED) $$('#heroVid,#reelVid').forEach(function(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); });
+$$('.clip').forEach(function(c){
+  var v = $('video', c), b = $('.play', c);
+  b.addEventListener('click', function(){ c.classList.add('playing'); v.controls = true; var p = v.play(); if (p && p.catch) p.catch(function(){}); });
+});
+
+/* ---------- button ripple ---------- */
+if (!REDUCED) document.addEventListener('pointerdown', function(e){
+  var el = e.target.closest('.btn'); if (!el) return;
+  var r = el.getBoundingClientRect(), d = document.createElement('span');
+  d.className = 'btn-ripple'; d.style.left = (e.clientX - r.left) + 'px'; d.style.top = (e.clientY - r.top) + 'px';
+  el.appendChild(d); setTimeout(function(){ d.remove(); }, 700);
+}, {passive:true});
+
+/* ---------- mobile menu ---------- */
+var burger = $('#burger'), menu = $('#menu');
+function setMenu(o){ menu.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); }
+burger.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+$$('a', menu).forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+/* ---------- heading word split ---------- */
+$$('.split').forEach(function(h){
+  var i = 0;
+  (function walk(node){
+    [].slice.call(node.childNodes).forEach(function(n){
+      if (n.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(part){
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          var w = document.createElement('span'); w.className = 'w';
+          var inner = document.createElement('i'); inner.textContent = part; inner.style.setProperty('--i', i++);
+          w.appendChild(inner); frag.appendChild(w);
+        });
+        node.replaceChild(frag, n);
+      } else if (n.nodeType === 1) walk(n);
+    });
+  })(h);
+});
+
+/* ---------- reveal on scroll (only things below the fold get hidden) ---------- */
+function countUp(el){
+  var to = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0, fin = el.textContent;
+  if (REDUCED) return;
+  var t0 = null;
+  requestAnimationFrame(function step(now){
+    if (t0 === null) t0 = now;
+    var k = Math.min(1, (now - t0) / 1400);
+    el.textContent = k < 1 ? (to * easeOut(k)).toFixed(dec) : fin;
+    if (k < 1) requestAnimationFrame(step);
+  });
+}
+if ('IntersectionObserver' in window) {
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.remove('pre');
+      if (e.target.dataset.count) countUp(e.target);
+      io.unobserve(e.target);
+    });
+  }, {rootMargin:'0px 0px -10% 0px'});
+  $$('.split,.fade,.wipe,#radar').forEach(function(el){
+    if (!REDUCED && el.getBoundingClientRect().top > innerHeight * 0.9) el.classList.add('pre');
+    io.observe(el);
+  });
+  $$('[data-count]').forEach(function(el){ io.observe(el); });
+}
+
+/* ---------- scroll driven bits: header, progress, hero parallax, footer text ---------- */
+var hdr = $('#hdr'), prog = $('#prog'), heroMedia = $('#heroMedia'), bar = $('#bar');
+var navLinks = $$('.nav a'), secs = navLinks.map(function(a){ return $(a.getAttribute('href')); });
+var storyApply = null, ticking = false;
+function onFrame(){
+  ticking = false;
+  var y = scrollY, vh = innerHeight, max = document.documentElement.scrollHeight - vh;
+  hdr.classList.toggle('scrolled', y > 40);
+  bar.classList.toggle('show', y > vh * 0.5);
+  prog.style.transform = 'scaleX(' + (max > 0 ? clamp(y / max, 0, 1) : 0) + ')';
+  if (!REDUCED) {
+    if (y < vh * 1.2) heroMedia.style.transform = 'translate3d(0,' + (y * 0.22).toFixed(1) + 'px,0)';
+  }
+  var cur = -1;
+  secs.forEach(function(s, i){ if (s && s.getBoundingClientRect().top < vh * 0.4) cur = i; });
+  navLinks.forEach(function(a, i){ a.classList.toggle('cur', i === cur); });
+  if (storyApply) storyApply();
+}
+addEventListener('scroll', function(){ if (!ticking) { ticking = true; requestAnimationFrame(onFrame); } }, {passive:true});
+addEventListener('resize', onFrame);
+
+/* ---------- service cards: tilt + glow follow the pointer ---------- */
+if (!REDUCED && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+  $$('.svc').forEach(function(c){
+    c.addEventListener('pointermove', function(e){
+      var r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      c.style.setProperty('--ry', ((px - .5) * 7).toFixed(2) + 'deg');
+      c.style.setProperty('--rx', ((.5 - py) * 7).toFixed(2) + 'deg');
+      c.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+      c.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+    });
+    c.addEventListener('pointerleave', function(){ c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+  });
+}
+
+/* ---------- problem cards: scroll stack ---------- */
+(function(){
+  var wrap = $('#pains'); if (!wrap || REDUCED) return;
+  var cards = $$('.pain', wrap); if (cards.length < 2) return;
+  var end = document.createElement('div'); end.className = 'stack-end'; end.setAttribute('aria-hidden', 'true'); wrap.appendChild(end);
+  var CFG = {stackPosition:.16, scaleEndPosition:.08, dist:18, itemScale:.035, blur:1.1};
+  var baseScale = 1 - (cards.length - 1) * CFG.itemScale;
+  var rel = [], relEnd = 0, deckBottom = 0, vh = 0, last = [], queued = false;
+  function prog(v, a, b){ return v < a ? 0 : v > b ? 1 : (v - a) / (b - a); }
+  function measure(){
+    vh = innerHeight;
+    var saved = cards.map(function(c){ return c.style.transform; });
+    cards.forEach(function(c){ c.style.transform = 'none'; c.style.filter = ''; });
+    var wt = wrap.getBoundingClientRect().top;
+    rel = cards.map(function(c){ return c.getBoundingClientRect().top - wt; });
+    relEnd = end.getBoundingClientRect().top - wt;
+    var tall = 0; cards.forEach(function(c){ tall = Math.max(tall, c.offsetHeight); });
+    deckBottom = CFG.stackPosition * vh + CFG.dist * (cards.length - 1) + tall;
+    cards.forEach(function(c, j){ c.style.transform = saved[j]; });
+    last = []; apply();
+  }
+  function apply(){
+    var top = scrollY, wrapTop = wrap.getBoundingClientRect().top + top;
+    var stackPx = CFG.stackPosition * vh, scaleEndPx = CFG.scaleEndPosition * vh, pinEnd = wrapTop + relEnd - deckBottom;
+    var topIndex = 0;
+    for (var k = 0; k < cards.length; k++) if (top >= wrapTop + rel[k] - stackPx - CFG.dist * k) topIndex = k;
+    for (var i = 0; i < cards.length; i++) {
+      var cardTop = wrapTop + rel[i], pinStart = cardTop - stackPx - CFG.dist * i;
+      var target = baseScale + i * CFG.itemScale;
+      var scale = 1 - prog(top, pinStart, cardTop - scaleEndPx) * (1 - target);
+      var ty = 0;
+      if (top >= pinStart) ty = (top > pinEnd ? pinEnd : top) - cardTop + stackPx + CFG.dist * i;
+      var blur = i < topIndex ? (topIndex - i) * CFG.blur : 0;
+      var t = {y:Math.round(ty * 100) / 100, s:Math.round(scale * 1000) / 1000, b:Math.round(blur * 100) / 100}, p = last[i];
+      if (p && Math.abs(p.y - t.y) < .1 && Math.abs(p.s - t.s) < .001 && Math.abs(p.b - t.b) < .1) continue;
+      cards[i].style.transform = 'translate3d(0,' + t.y + 'px,0) scale(' + t.s + ')';
+      cards[i].style.filter = t.b > 0 ? 'blur(' + t.b + 'px)' : '';
+      last[i] = t;
+    }
+  }
+  wrap.classList.add('is-stacking');
+  measure();
+  addEventListener('scroll', function(){ if (queued) return; queued = true; requestAnimationFrame(function(){ queued = false; apply(); }); }, {passive:true});
+  addEventListener('resize', measure);
+  if (window.ResizeObserver) new ResizeObserver(measure).observe(wrap);
+})();
+
+/* ---------- the dig story ---------- */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg';
+  var story = $('#how'), svg = $('#plot');
+  var X0 = 104, Y0 = 64, W = 432, H = 312, COLS = 8, ROWS = 5;
+  var px = function(c){ return X0 + 30 + c * ((W - 60) / (COLS - 1)); };
+  var py = function(r){ return Y0 + 30 + r * ((H - 60) / (ROWS - 1)); };
+  var piersG = $('#piers'), trG = $('#trenches'), piers = [], lines = [];
+  for (var r = 0; r < ROWS; r++) {
+    var l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', X0 + 8); l.setAttribute('x2', X0 + W - 8); l.setAttribute('y1', py(r)); l.setAttribute('y2', py(r));
+    trG.appendChild(l); lines.push(l);
+  }
+  [0, 2, 5, 7].forEach(function(c){
+    var l = document.createElementNS(NS, 'line');
+    l.setAttribute('y1', Y0 + 8); l.setAttribute('y2', Y0 + H - 8); l.setAttribute('x1', px(c)); l.setAttribute('x2', px(c));
+    trG.appendChild(l); lines.push(l);
+  });
+  lines.forEach(function(l){ l.setAttribute('pathLength', '1'); l.setAttribute('stroke-dasharray', '1'); });
+  for (var c = 0; c < COLS; c++) for (var rr = 0; rr < ROWS; rr++) {
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('transform', 'translate(' + px(c) + ' ' + py(c % 2 ? ROWS - 1 - rr : rr) + ')');
+    g.innerHTML = '<g><circle r="10" fill="#d9a07c" opacity=".55"/><circle r="6.5" fill="#150a04"/></g>';
+    piersG.appendChild(g); piers.push(g.firstChild);
+  }
+  var stripClip = $('#stripClip'), pourClip = $('#pourClip'), setout = $('#setout'), old = $('#oldStuff'),
+      digger = $('#digger'), stampIn = $('#stampIn'), hudS = $('#hudStage'), hudR = $('#hudRL'),
+      acts = $$('.act', story), rails = $$('.rail b', story);
+  var NAMES = ['Stage 1 / strip and set out', 'Stage 2 / piering', 'Stage 3 / footings', 'Handover / ready to pour'];
+  var RL = [0, -2.4, -0.6, -0.6];
+
+  function render(p){
+    var s = p * 4, a = clamp(s, 0, 1), b = clamp(s - 1, 0, 1), c2 = clamp(s - 2, 0, 1), d = clamp(s - 3, 0, 1);
+    /* 1: strip */
+    var strip = clamp(a / .8, 0, 1);
+    stripClip.setAttribute('width', (600 * strip).toFixed(1));
+    old.style.opacity = (1 - clamp(strip * 1.6 - .5, 0, 1)).toFixed(2);
+    setout.style.opacity = (clamp((a - .8) / .2, 0, 1) * (1 - d) * .85).toFixed(2);
+    /* 2: piers */
+    piers.forEach(function(el, i){ var k = easeOut(clamp(b * (piers.length + 4) - i, 0, 1)); el.setAttribute('transform', 'scale(' + k.toFixed(3) + ')'); });
+    /* 3: trenches */
+    lines.forEach(function(l, i){ var k = clamp(c2 * (lines.length + 1.5) - i, 0, 1); l.setAttribute('stroke-dashoffset', (1 - k).toFixed(3)); });
+    /* 4: pour + stamp */
+    var pour = clamp(d / .7, 0, 1);
+    pourClip.setAttribute('height', (H * pour).toFixed(1));
+    var st = easeOut(clamp((d - .6) / .4, 0, 1));
+    stampIn.setAttribute('transform', 'scale(' + st.toFixed(3) + ') rotate(' + ((1 - st) * -40).toFixed(1) + ')');
+    stampIn.style.opacity = st.toFixed(2);
+    /* digger */
+    var dx, dy, rot = 0;
+    if (s < 1) { dx = 20 + 600 * strip - 30; dy = 220 + Math.sin(strip * 14) * 120; }
+    else if (s < 2) { var i = Math.min(piers.length - 1, Math.floor(b * (piers.length + 4))), col = Math.floor(i / ROWS), row = i % ROWS; row = col % 2 ? ROWS - 1 - row : row; dx = px(col) - 52; dy = py(row); }
+    else if (s < 3) { var li = Math.min(lines.length - 1, Math.floor(c2 * (lines.length + 1.5))), k2 = clamp(c2 * (lines.length + 1.5) - li, 0, 1);
+      if (li < ROWS) { dx = X0 + 8 + (W - 16) * k2 + 22; dy = py(li); rot = 180; } else { dx = px([0, 2, 5, 7][li - ROWS]); dy = Y0 + 8 + (H - 16) * k2 + 22; rot = -90; } }
+    else { dx = 580; dy = 392 + d * 60; rot = 0; }
+    digger.setAttribute('transform', 'translate(' + clamp(dx, 30, 610).toFixed(1) + ' ' + dy.toFixed(1) + ') rotate(' + rot + ')');
+    digger.style.opacity = s >= 3 ? (1 - d * 2 < 0 ? 0 : 1 - d * 2).toFixed(2) : 1;
+    /* text */
+    var idx = Math.min(3, Math.floor(s));
+    acts.forEach(function(el, j){ el.classList.toggle('on', j === idx); el.classList.toggle('gone', j < idx); });
+    rails.forEach(function(el, j){ el.style.transform = 'scaleX(' + clamp(s - j, 0, 1).toFixed(3) + ')'; });
+    hudS.innerHTML = '<b>' + NAMES[idx].split(' / ')[0] + '</b> / ' + NAMES[idx].split(' / ')[1];
+    var rl = idx === 0 ? -0.3 * a : idx === 1 ? -0.3 - 2.1 * b : RL[idx];
+    hudR.innerHTML = 'RL <b>' + (rl === 0 ? '0.00' : rl.toFixed(2)) + '</b> m';
+  }
+
+  if (REDUCED || !CSS.supports('position', 'sticky')) { render(1); acts.forEach(function(a){ a.classList.remove('on', 'gone'); }); return; }
+  story.classList.add('is-scrub');
+  storyApply = function(){
+    var r = story.getBoundingClientRect(), total = r.height - innerHeight;
+    if (r.bottom < -50 || r.top > innerHeight + 50) return;
+    render(clamp(-r.top / total, 0, .9999));
+  };
+  render(0);
+})();
+
+/* ---------- depth carousel ---------- */
+(function(){
+  var root = $('#depth'); if (!root) return;
+  var CFG = {depth:220, spread:120, tilt:22, dir:1, visible:4, falloff:.2, blur:5, duration:750, autoplayDelay:3400, cardWidth:440};
+  var cards = $$('.dc-card', root), dots = $$('.dc-dot', root), n = cards.length;
+  var pos = 0, focus = 0, scale = 1, raf = 0;
+  function layout(p){
+    for (var i = 0; i < n; i++) {
+      var el = cards[i], d = i - p; d = ((d % n) + n) % n; if (d > n / 2) d -= n;
+      var back = Math.max(0, d), shown = Math.abs(d) <= CFG.visible + .5;
+      var tz = -CFG.depth * d, tx = CFG.dir * CFG.spread * d, ry = CFG.dir * CFG.tilt * clamp(d, 0, 1);
+      var op = d < 0 ? Math.max(0, 1 + d) : 1; if (!shown) op = 0;
+      var blurPx = Math.min(CFG.blur, (back / CFG.visible) * CFG.blur);
+      el.style.transform = 'translate(-50%,-50%) scale(' + scale + ') translateX(' + tx.toFixed(2) + 'px) translateZ(' + tz.toFixed(2) + 'px) rotateY(' + (-ry).toFixed(3) + 'deg)';
+      el.style.opacity = op.toFixed(3);
+      el.style.filter = blurPx > .05 ? 'blur(' + blurPx.toFixed(2) + 'px)' : '';
+      el.style.zIndex = String(Math.round(2000 - d * 20));
+      el.style.pointerEvents = shown && op > .05 ? 'auto' : 'none';
+      var tint = $('.dc-tint', el); if (tint) tint.style.opacity = clamp(back * CFG.falloff * 1.4, 0, .82).toFixed(3);
+      var cap = $('.dc-cap', el); if (cap) cap.style.opacity = clamp(1 - Math.abs(d) * 1.6, 0, 1).toFixed(2);
+    }
+  }
+  function tweenTo(target, animate){
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    var from = pos, delta = target - from;
+    if (!animate || REDUCED || !delta) { pos = ((target % n) + n) % n; layout(pos); return; }
+    var t0 = performance.now();
+    (function step(now){
+      var k = Math.min(1, (now - t0) / CFG.duration);
+      pos = from + delta * easeOut(k); layout(pos);
+      if (k < 1) raf = requestAnimationFrame(step); else { raf = 0; pos = ((pos % n) + n) % n; layout(pos); }
+    })(t0);
+  }
+  function setFocus(raw, animate){
+    var idx = ((raw % n) + n) % n, delta = idx - pos;
+    delta = ((delta % n) + n) % n; if (delta > n / 2) delta -= n;
+    tweenTo(pos + delta, animate !== false);
+    focus = idx;
+    dots.forEach(function(d, i){ d.classList.toggle('is-active', i === idx); });
+  }
+  function nav(s){ setFocus(focus + s, true); }
+  function fit(){
+    var w = root.clientWidth; if (!w) return;
+    var narrow = w < 620;
+    CFG.spread = narrow ? 56 : 120; CFG.depth = narrow ? 160 : 220; CFG.tilt = narrow ? 15 : 22;
+    scale = clamp(w / (CFG.cardWidth + CFG.spread * 2 + (narrow ? 20 : 260)), .4, 1.25);
+    root.style.setProperty('--dc-shift', (-CFG.spread * Math.min(CFG.visible, n - 1) * scale * .22).toFixed(1) + 'px');
+    layout(pos);
+  }
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(root); else addEventListener('resize', fit);
+  var drag = null;
+  root.addEventListener('pointerdown', function(e){
+    if (e.target.closest('.nav-arrow,.dc-dot')) return;
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    drag = {x:e.clientX, start:pos, lastX:e.clientX, lastT:performance.now(), v:0, moved:false, id:e.pointerId};
+  });
+  root.addEventListener('pointermove', function(e){
+    if (!drag) return;
+    var stepPx = Math.max(CFG.cardWidth * .55 * scale, 40), dx = e.clientX - drag.x;
+    if (!drag.moved && Math.abs(dx) > 4) { drag.moved = true; try { root.setPointerCapture(drag.id); } catch (err) {} }
+    if (!drag.moved) return;
+    var now = performance.now(), dt = Math.max(now - drag.lastT, 1);
+    drag.v = (e.clientX - drag.lastX) / dt; drag.lastX = e.clientX; drag.lastT = now;
+    pos = drag.start - dx / stepPx; layout(pos);
+  });
+  function endDrag(){
+    if (!drag) return; var d = drag; drag = null; if (!d.moved) return;
+    var stepPx = Math.max(CFG.cardWidth * .55 * scale, 40);
+    setFocus(Math.round(pos - (d.v * 180) / stepPx), true);
+  }
+  root.addEventListener('pointerup', endDrag); root.addEventListener('pointercancel', endDrag);
+  var wheelT = 0;
+  root.addEventListener('wheel', function(e){
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    pos += clamp(e.deltaX / (CFG.cardWidth * .9), -.6, .6); layout(pos);
+    clearTimeout(wheelT); wheelT = setTimeout(function(){ setFocus(Math.round(pos), true); }, 130);
+  }, {passive:false});
+  root.addEventListener('keydown', function(e){ if (e.key === 'ArrowLeft') { e.preventDefault(); nav(-1); } else if (e.key === 'ArrowRight') { e.preventDefault(); nav(1); } });
+  $('.dc-prev', root).addEventListener('click', function(){ nav(-1); });
+  $('.dc-next', root).addEventListener('click', function(){ nav(1); });
+  dots.forEach(function(d, i){ d.addEventListener('click', function(){ setFocus(i, true); }); });
+  cards.forEach(function(c, i){ c.addEventListener('click', function(){ setFocus(i, true); }); });
+  var timer = null, hovered = false, focused = false, onScreen = false;
+  function sync(){
+    var run = !REDUCED && onScreen && !hovered && !focused;
+    if (run && !timer) timer = setInterval(function(){ nav(1); }, CFG.autoplayDelay);
+    if (!run && timer) { clearInterval(timer); timer = null; }
+  }
+  root.addEventListener('mouseenter', function(){ hovered = true; sync(); });
+  root.addEventListener('mouseleave', function(){ hovered = false; sync(); });
+  root.addEventListener('focusin', function(){ focused = true; sync(); });
+  root.addEventListener('focusout', function(){ focused = false; sync(); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; sync(); }, {threshold:.25}).observe(root);
+  fit(); setFocus(0, false);
+})();
+
+/* ---------- who tabs ---------- */
+(function(){
+  var DATA = {
+    builder:{say:"I need it done Thursday so the steel can go in Friday.", txt:"You need a subbie who turns up, reads the drawings and doesn't need babysitting. Give us the set-out and the programme and tick excavation off your list.", list:["Start dates we actually keep","Dug to your engineer's drawings","Spoil carted the same day"], img:"assets/f2.jpg"},
+    concreter:{say:"I just want to turn up and pour.", txt:"Trenches cut clean and to depth, so your order is right and your crew isn't shovelling out someone else's mess before the pump arrives.", list:["Square, clean trenches","Levels checked before we leave","No over-dig eating your concrete"], img:"assets/p8.jpg"},
+    owner:{say:"I don't know what I don't know.", txt:"Granny flat, duplex or knockdown rebuild and never organised a dig before? We'll explain it in plain English and tell you what you actually need.", list:["One fixed price, in writing","We deal with your builder or engineer","Neighbours and boundaries looked after"], img:"assets/p3.jpg"},
+    dev:{say:"I need one contractor for the whole civil package.", txt:"Car parks, hardstand, multi-lot sites and civil packages. Insured, GST registered and set up to work to your programme and your paperwork.", list:["Bulk, detail, drainage and compaction","Insurance and paperwork ready","Residential, commercial and infrastructure"], img:"assets/carpark.jpg"}
+  };
+  var tabs = $('#tabs'), pill = $('.pill', tabs), btns = $$('button', tabs), panel = $('#panel');
+  var tick = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+  function movePill(b){ pill.style.width = b.offsetWidth + 'px'; pill.style.height = b.offsetHeight + 'px'; pill.style.transform = 'translate(' + b.offsetLeft + 'px,' + b.offsetTop + 'px)'; }
+  function show(b, animate){
+    var d = DATA[b.dataset.k];
+    btns.forEach(function(x){ x.setAttribute('aria-selected', x === b); });
+    movePill(b);
+    $('#pSay').textContent = d.say; $('#pTxt').textContent = d.txt; $('#pImg').src = d.img;
+    $('#pList').innerHTML = d.list.map(function(t){ return '<li>' + tick + t + '</li>'; }).join('');
+    if (animate) { panel.classList.remove('swap'); void panel.offsetWidth; panel.classList.add('swap'); }
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ show(b, true); }); });
+  show(btns[0], false);
+  addEventListener('resize', function(){ movePill($('[aria-selected=true]', tabs)); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ movePill($('[aria-selected=true]', tabs)); });
+})();
+
+/* ---------- quote wizard ---------- */
+(function(){
+  var form = $('#qb'), steps = $$('.wz-step', form), cur = 0;
+  var back = $('#wzBack'), next = $('#wzNext'), barEl = $('#wzBar'), count = $('#wzCount'), sms = $('#smsBtn');
+  function go(i){
+    cur = clamp(i, 0, steps.length - 1);
+    steps.forEach(function(s, j){ s.hidden = j !== cur; s.classList.remove('show'); });
+    void steps[cur].offsetWidth; steps[cur].classList.add('show');
+    back.disabled = cur === 0;
+    next.textContent = cur === steps.length - 1 ? 'Brief is ready' : 'Next';
+    next.disabled = cur === steps.length - 1;
+    barEl.style.transform = 'scaleX(' + ((cur + 1) / steps.length) + ')';
+    count.textContent = 'Step ' + (cur + 1) + ' of ' + steps.length;
+  }
+  back.addEventListener('click', function(){ go(cur - 1); });
+  next.addEventListener('click', function(){ go(cur + 1); });
+  function radio(name){ var r = $('input[name="' + name + '"]:checked', form); return r ? r.value : ''; }
+  function set(id, v, empty){
+    var el = $('#' + id), txt = v || empty, was = el.textContent;
+    el.textContent = txt; el.classList.toggle('empty', !v);
+    if (was !== txt && v) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+  }
+  function build(){
+    var jobs = $$('input[name="job"]:checked', form).map(function(c){ return c.value; });
+    var name = $('#fName').value.trim(), sub = $('#fSub').value.trim(), ph = $('#fPh').value.trim();
+    set('dJob', jobs.join(', '), 'Not picked yet'); set('dSite', radio('site'), 'Not picked yet');
+    set('dAccess', radio('access'), 'Not picked yet'); set('dWhen', radio('when'), 'Not picked yet');
+    set('dSub', sub, 'Not added yet'); set('dName', name, 'Not added yet');
+    var L = ["G'day NJ Civil, after a price on a job."];
+    if (jobs.length) L.push('Job: ' + jobs.join(', '));
+    if (radio('site')) L.push('Site: ' + radio('site'));
+    if (radio('access')) L.push('Access: ' + radio('access'));
+    if (radio('when')) L.push('Timing: ' + radio('when'));
+    if (sub) L.push('Suburb: ' + sub);
+    if (name) L.push('Name: ' + name);
+    if (ph) L.push('Call me on: ' + ph);
+    L.push('Plans to follow.');
+    sms.href = 'sms:+61423332202?&body=' + encodeURIComponent(L.join('\n'));
+  }
+  form.addEventListener('input', build);
+  form.addEventListener('change', function(e){
+    build();
+    if (e.target.type === 'radio') setTimeout(function(){ go(cur + 1); }, 320);
+  });
+  form.addEventListener('submit', function(e){ e.preventDefault(); });
+  $$('[data-job]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var box = $('input[name="job"][value="' + a.dataset.job + '"]', form);
+      if (box) { box.checked = true; build(); go(0); }
+    });
+  });
+  build(); go(0);
+})();
+
+/* ---------- radar suburbs (bearing and distance from Auburn) ---------- */
+(function(){
+  var NS = 'http://www.w3.org/2000/svg', g = $('#subs'); if (!g) return;
+  var S = [['Potts Hill',2.9,200],['Clyde',3.8,320],['Villawood',4.5,238],['Greenacre',4.9,160],['Camellia',5.3,350],['Burwood',7.1,95],['Hurstville',12.5,140],['West Pennant Hills',13.2,8],['Campbelltown',30.2,216]];
+  S.forEach(function(s, i){
+    var r = 44 + 196 * Math.sqrt(s[1] / 30.2), a = (s[2] - 90) * Math.PI / 180;
+    var x = 250 + r * Math.cos(a), y = 250 + r * Math.sin(a), right = x >= 250;
+    var el = document.createElementNS(NS, 'g'); el.setAttribute('class', 'sub'); el.style.setProperty('--i', i);
+    el.innerHTML = '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="6"/><text x="' + (x + (right ? 11 : -11)).toFixed(1) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="' + (right ? 'start' : 'end') + '">' + s[0] + '</text>';
+    g.appendChild(el);
+  });
+})();
+
+/* ---------- faq ---------- */
+$$('#faqList .qa').forEach(function(q){
+  $('button', q).addEventListener('click', function(){
+    var open = !q.classList.contains('open');
+    $$('#faqList .qa').forEach(function(o){ o.classList.remove('open'); $('button', o).setAttribute('aria-expanded', 'false'); });
+    if (open) { q.classList.add('open'); $('button', q).setAttribute('aria-expanded', 'true'); }
+  });
+});
+
+onFrame();
+})();
+</script>
+</body>
+</html>
